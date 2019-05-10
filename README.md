@@ -6,8 +6,7 @@ This particular repository consists of scripts that are being used for tasks lik
 </br>1. ~# ansible-playbook -i host.txt -u username -k asa_show_before.yml
 </br>          After the upgrade;
 </br>2. ~# ansible-playbook -i host.txt -u username -k asa_show_after.yml
-</br>Below are the commands I use for the contexts or standalone devices
-</br> Your inventory file (host.txt) should look like below, if you have a contexts (admin+other). 
+</br> Your inventory file (host.txt) should look like below, if you have contexts (admin+other) or single mode (Only update ASA list). 
 </br>[ASA]
 </br>admin.vfw01
 </br>context01.vfw01
