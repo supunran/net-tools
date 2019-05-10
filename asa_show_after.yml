@@ -39,4 +39,4 @@
        dest: "$PWD/show_after_asa_system{{ inventory_hostname }}.txt"
 
    - name: EXECUTE SCRIPT
-     local_action: command sh /home/arachs1/append2_asa.sh
+     local_action: command sh /home/username/append2_asa.sh
