@@ -1,0 +1,42 @@
+---
+- hosts: ASA
+  gather_facts: yes
+  connection: local
+
+  tasks:
+   - name: SHOW COMMANDS
+     asa_command:
+       commands:
+         - show hostname
+         - show interface ip brief
+         - show failover
+         - show access-list | i name hash
+         - show run
+     register: config
+   - name: SAVE OUTPUT
+     copy:
+       content: "*******************************\n****OUTPUT FOR {{ inventory_hostname }}****\n*******************************\n\n{{ config.stdout[0] }}\n\n{{ config
+.stdout[1] }}\n\n{{ config.stdout[2] }}\n\n{{ config.stdout[3] }}\n\n{{ config.stdout[4] }}\n\n"
+       dest: "$PWD/show_before_asa_{{ inventory_hostname }}.txt"
+
+
+- hosts: SYSTEM
+  gather_facts: yes
+  connection: local
+
+  tasks:
+   - name: SHOW COMMANDS - SYSTEM
+     asa_command:
+       commands:
+        - show run all
+        - show failover
+        - show int ip brief
+       context: system
+     register: output
+   - name: SAVE SYSTEM SPACE
+     copy:
+       content: "****SYSTEM OUTPUT FOR {{ inventory_hostname }}****\n\n{{ output.stdout[0] }}\n\n{{ output.stdout[1] }}\n\n{{ output.stdout[2] }}"
+       dest: "$PWD/show_before_asa_system{{ inventory_hostname }}.txt"
+
+   - name: EXECUTE SCRIPT
+     local_action: command sh /home/arachs1/append_asa.sh
