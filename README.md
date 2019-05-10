@@ -1,4 +1,4 @@
-This particular repository consists of scripts that are being used for tasks like doing changes on devices, gettting backups and performing validations after upgrades.
+This particular repository consists of scripts that are being used for tasks like making changes on devices, gettting backups and performing validations after upgrades.
 # Cisco IOS, IOS-XE
 ciscoshell.sh and cisco_exp.sh are scripts you can use for running show commands or making config changes on cisco devices.
 # Ansible scripts for ASA upgrade validations
